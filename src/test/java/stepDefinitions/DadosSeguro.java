@@ -59,11 +59,23 @@ public class DadosSeguro {
 
 	}
 
-	@And("clico no botão em acessar")
-	public void clicarAcessar() {
-		LoginPage loginPage = new LoginPage();
+	@And("seleciono data com \"([^\"]*)\"$")
+	public void preencherCampo(String data) {
+		//VehicleDataPage vehicleData = new VehicleDataPage();
+		vehicleData.selecaoData(data);
 
-		loginPage.clicarAcessar();
+	}
+	
+	@And("seleciono handDrive com \"([^\"]*)\"$")
+	public void selecionoHandDrive(String tipo) {
+		//VehicleDataPage vehicleData = new VehicleDataPage();
+		vehicleData.selecaoHandDrive(tipo);
+
+	}
+	
+	@And("clico em Next")
+	public void clicarAcessar() {
+		vehicleData.clicarNext();
 	}
 
 	@Then("sou redirecionado para Home")

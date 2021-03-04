@@ -45,31 +45,49 @@ public class VehicleDataPage extends BasePage {
 	
 	@FindBy(xpath = "//*[@id=\"annualmileage\"]")
 	private WebElement annualmileage;
+		
+	@FindBy(xpath = "//*[@id=\"dateofmanufacture\"]")
+	private WebElement dateofmanufacture;
+		
+	@FindBy(xpath = "//*[@id=\"righthanddriveyes\"]")
+	private WebElement righthanddriveyes;
+	
+	@FindBy(xpath = "//*[@id=\"righthanddriveno\"]")
+	private WebElement righthanddriveno;
+		
+	@FindBy(xpath = "//*[@id=\"nextenterinsurantdata\"]")
+	private WebElement nextenterinsurantdata;
+
 	
 	public void selecaoCombo(String combo, String conteudo) {
 		
-		Select comboEscolhido;
+		Select comboEscolhido = null;
 		
         try {
             switch(combo) {
                 case "make":
                 	this.waitElementIsDone(Browser.getWebDriver(), this.make);
+                	comboEscolhido = new Select(this.make);
                     break;
                 case "model":
                 	this.waitElementIsDone(Browser.getWebDriver(), this.model);
+                	comboEscolhido = new Select(this.model);
                     break;
                 case "numberofseats":
                 	this.waitElementIsDone(Browser.getWebDriver(), this.numberofseats);
+                	comboEscolhido = new Select(this.numberofseats);
                     break;
                 case "numberofseatsmotorcycle":
                 	this.waitElementIsDone(Browser.getWebDriver(), this.numberofseatsmotorcycle);
+                	comboEscolhido = new Select(this.numberofseatsmotorcycle);
                     break;
                 case "fuel":
                 	this.waitElementIsDone(Browser.getWebDriver(), this.fuel);
+                	comboEscolhido = new Select(this.fuel);
                     break;
                 default: ;
             }
-    		comboEscolhido = new Select(Browser.getWebDriver().findElement(By.id(combo)));
+    		
     		comboEscolhido.selectByVisibleText(conteudo);
         } catch (Exception e) {
             //throw new Exception(e);
@@ -119,8 +137,37 @@ public class VehicleDataPage extends BasePage {
         }
 
 	}
+	
+	public void selecaoData(String data) {
 
+	    //Preenche data como 09/25/2013
+		
+	    dateofmanufacture.sendKeys(data);
+	}
+	
+	public void selecaoHandDrive(String tipo) {
+        try {
+            switch(tipo) {
+                case "yes":
+                	this.waitElementIsDone(Browser.getWebDriver(), this.righthanddriveyes);
+                	this.righthanddriveyes.click();
+                    break;
+                case "no":
+                	this.waitElementIsDone(Browser.getWebDriver(), this.righthanddriveno);
+                	this.righthanddriveno.click();
+                    break;    
+                default: ;
+            }
 
+        } catch (Exception e) {
+            //throw new Exception(e);
+        }
+	}
+	
+	public void clicarNext() {
+		
+		nextenterinsurantdata.click();
+	}
 
 }
 
