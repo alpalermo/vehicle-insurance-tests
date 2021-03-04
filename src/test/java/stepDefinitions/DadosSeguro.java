@@ -2,7 +2,7 @@ package stepDefinitions;
 
 import org.junit.Assert;
 
-import pages.HomePage;
+import pages.VehicleDataPage;
 import pages.LoginPage;
 import utils.Browser;
 
@@ -14,7 +14,13 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 
-public class Funcionalidade {
+public class DadosSeguro {
+	
+	private VehicleDataPage vehicleData;
+	
+    /*public DadosSeguro() throws Exception {        
+    	vehicleData = new VehicleDataPage();
+    }*/
 
 	@Before
 	public void before() throws Exception {
@@ -35,8 +41,8 @@ public class Funcionalidade {
 	
 	@And("^seleciono combo \"([^\"]*)\" com \"([^\"]*)\"$")
 	public void selecionoMake(String combo, String conteudo) {
-		HomePage homePage = new HomePage();
-		homePage.selecaoCombo(combo, conteudo);
+		vehicleData = new VehicleDataPage();
+		vehicleData.selecaoCombo(combo, conteudo);
 
 	}
 	
@@ -46,18 +52,11 @@ public class Funcionalidade {
 	}
 
 
-	@And("preenchi o campo Usuario")
-	public void preencherUsuario() {
-		LoginPage loginPage = new LoginPage();
+	@And("preenchi o campo \"([^\"]*)\" com \"([^\"]*)\"$")
+	public void preencherCampo(String campo, String conteudo) {
+		//VehicleDataPage vehicleData = new VehicleDataPage();
+		vehicleData.preencheTexto(campo, conteudo);
 
-		//loginPage.campoUsuario(Constants.USUARIO); 
-	}
-
-	@And("preenchi o campo Senha")
-	public void preencherSenha() {
-		LoginPage loginPage = new LoginPage();
-
-		//loginPage.campoSenha(Constants.SENHA);
 	}
 
 	@And("clico no botão em acessar")
@@ -66,31 +65,12 @@ public class Funcionalidade {
 
 		loginPage.clicarAcessar();
 	}
-	
-	@When("posiciono o mouse sobre o Usuário no menu")
-	public void posicionoOMouseSobreUsuario() {
-		HomePage homePage = new HomePage();
-		//homePage.moveMouseToUser();
-		
-	}
 
 	@Then("sou redirecionado para Home")
 	public void validateUser() throws InterruptedException {
-		HomePage homePage = new HomePage();
+		VehicleDataPage homePage = new VehicleDataPage();
 
 		//Assert.assertEquals("Rafael M. da Silva Filho", homePage.getUserName());
 	}
-
-//	private void efetuarLoginUm() {
-//		LoginPage loginPage = new LoginPage();
-//		Browser.getWebDriver().get("https://alelo-lannister.cit/content/pesim/home.html");
-//		loginPage.typeCpf(Constants.CPF_Lannister);
-//		loginPage.typeDia(Constants.DIA_Lannister);
-//		loginPage.typeMes(Constants.MES_Lannister);
-//		loginPage.typeAno(Constants.ANO_Lannister);
-//		loginPage.typeSenha(Constants.SENHA);
-//		loginPage.typeCaptcha(Constants.CAPTCHA);
-//		loginPage.clickEntrar();
-//	}
 
 }

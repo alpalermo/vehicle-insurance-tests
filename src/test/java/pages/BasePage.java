@@ -8,12 +8,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.Browser;
 
 public class BasePage {
+	
+	Long espera = 5l;
+			
     public BasePage(){
         PageFactory.initElements(Browser.getWebDriver(),this);
     }
 
     protected void waitElementIsDone(WebDriver driver, WebElement element) {
-    	WebDriverWait wait = new WebDriverWait(driver, 20);
+    	WebDriverWait wait = new WebDriverWait(driver, 5);
     	wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 }
