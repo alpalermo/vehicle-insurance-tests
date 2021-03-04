@@ -16,7 +16,7 @@ public class BasePage {
     }
 
     protected void waitElementIsDone(WebDriver driver, WebElement element) {
-    	WebDriverWait wait = new WebDriverWait(driver, 5);
+    	WebDriverWait wait = new WebDriverWait(driver, espera);
     	wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 }

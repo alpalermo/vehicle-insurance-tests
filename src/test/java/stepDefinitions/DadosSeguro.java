@@ -78,11 +78,5 @@ public class DadosSeguro {
 		vehicleData.clicarNext();
 	}
 
-	@Then("sou redirecionado para Home")
-	public void validateUser() throws InterruptedException {
-		VehicleDataPage homePage = new VehicleDataPage();
-
-		//Assert.assertEquals("Rafael M. da Silva Filho", homePage.getUserName());
-	}
 
 }
