@@ -1,14 +1,26 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import utils.Browser;
 
-public class VehicleDataPage extends BasePage {
+public class VehicleDataPage{
+	
+	WebDriver driver;
+	
+    public VehicleDataPage(WebDriver driver){
+    	this.driver = driver;
+        PageFactory.initElements(driver,this);
+    }
+
 	
 	@FindBy(xpath = "//*[@id=\"make\"]")
 	private WebElement make;
@@ -49,7 +61,7 @@ public class VehicleDataPage extends BasePage {
 	@FindBy(xpath = "//*[@id=\"dateofmanufacture\"]")
 	private WebElement dateofmanufacture;
 		
-	@FindBy(xpath = "//*[@id=\"righthanddriveyes\"]")
+	@FindBy(xpath = "//*[@id=\"insurance-form\"]/div/section[1]/div[7]/p/label[1]")
 	private WebElement righthanddriveyes;
 	
 	@FindBy(xpath = "//*[@id=\"righthanddriveno\"]")
@@ -57,7 +69,11 @@ public class VehicleDataPage extends BasePage {
 		
 	@FindBy(xpath = "//*[@id=\"nextenterinsurantdata\"]")
 	private WebElement nextenterinsurantdata;
-
+	
+    protected void waitElementIsDone(WebDriver driver, WebElement element) {
+    	WebDriverWait wait = new WebDriverWait(driver, 5L);
+    	wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
 	
 	public void selecaoCombo(String combo, String conteudo) {
 		
@@ -66,23 +82,23 @@ public class VehicleDataPage extends BasePage {
         try {
             switch(combo) {
                 case "make":
-                	this.waitElementIsDone(Browser.getWebDriver(), this.make);
+                	this.waitElementIsDone(driver, this.make);
                 	comboEscolhido = new Select(this.make);
                     break;
                 case "model":
-                	this.waitElementIsDone(Browser.getWebDriver(), this.model);
+                	this.waitElementIsDone(driver, this.model);
                 	comboEscolhido = new Select(this.model);
                     break;
                 case "numberofseats":
-                	this.waitElementIsDone(Browser.getWebDriver(), this.numberofseats);
+                	this.waitElementIsDone(driver, this.numberofseats);
                 	comboEscolhido = new Select(this.numberofseats);
                     break;
                 case "numberofseatsmotorcycle":
-                	this.waitElementIsDone(Browser.getWebDriver(), this.numberofseatsmotorcycle);
+                	this.waitElementIsDone(driver, this.numberofseatsmotorcycle);
                 	comboEscolhido = new Select(this.numberofseatsmotorcycle);
                     break;
                 case "fuel":
-                	this.waitElementIsDone(Browser.getWebDriver(), this.fuel);
+                	this.waitElementIsDone(driver, this.fuel);
                 	comboEscolhido = new Select(this.fuel);
                     break;
                 default: ;
@@ -97,36 +113,34 @@ public class VehicleDataPage extends BasePage {
 	
 	public void preencheTexto(String campo, String conteudo) {
 		
-		WebElement elemento;
-		
         try {
             switch(campo) {
                 case "cylindercapacity":
-                	this.waitElementIsDone(Browser.getWebDriver(), this.cylindercapacity);
+                	this.waitElementIsDone(driver, this.cylindercapacity);
                 	this.cylindercapacity.sendKeys(conteudo);
                     break;
                 case "engineperformance":
-                	this.waitElementIsDone(Browser.getWebDriver(), this.engineperformance);
+                	this.waitElementIsDone(driver, this.engineperformance);
                 	this.engineperformance.sendKeys(conteudo);
                     break;
                 case "payload":
-                	this.waitElementIsDone(Browser.getWebDriver(), this.payload);
+                	this.waitElementIsDone(driver, this.payload);
                 	this.payload.sendKeys(conteudo);
                     break;
                 case "totalweight":
-                	this.waitElementIsDone(Browser.getWebDriver(), this.totalweight);
+                	this.waitElementIsDone(driver, this.totalweight);
                 	this.totalweight.sendKeys(conteudo);
                     break;
                 case "listprice":
-                	this.waitElementIsDone(Browser.getWebDriver(), this.listprice);
+                	this.waitElementIsDone(driver, this.listprice);
                 	this.listprice.sendKeys(conteudo);
                     break;
                 case "licenseplatenumber":
-                	this.waitElementIsDone(Browser.getWebDriver(), this.licenseplatenumber);
+                	this.waitElementIsDone(driver, this.licenseplatenumber);
                 	this.licenseplatenumber.sendKeys(conteudo);
                     break;
                 case "annualmileage":
-                	this.waitElementIsDone(Browser.getWebDriver(), this.annualmileage);
+                	this.waitElementIsDone(driver, this.annualmileage);
                 	this.annualmileage.sendKeys(conteudo);
                     break;
                 default: ;
@@ -149,11 +163,11 @@ public class VehicleDataPage extends BasePage {
         try {
             switch(tipo) {
                 case "yes":
-                	this.waitElementIsDone(Browser.getWebDriver(), this.righthanddriveyes);
+                	this.waitElementIsDone(driver, this.righthanddriveyes);
                 	this.righthanddriveyes.click();
                     break;
                 case "no":
-                	this.waitElementIsDone(Browser.getWebDriver(), this.righthanddriveno);
+                	this.waitElementIsDone(driver, this.righthanddriveno);
                 	this.righthanddriveno.click();
                     break;    
                 default: ;

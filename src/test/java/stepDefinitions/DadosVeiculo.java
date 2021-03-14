@@ -1,9 +1,11 @@
 package stepDefinitions;
 
 import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import pages.VehicleDataPage;
-import pages.LoginPage;
+
 import utils.Browser;
 
 import io.cucumber.java.After;
@@ -14,9 +16,26 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 
-public class DadosSeguro {
+public class DadosVeiculo {
 	
-	private VehicleDataPage vehicleData;
+	 WebDriver driver;		
+	 private VehicleDataPage vehicleData;	
+
+	 @Given("^user is on Home Page$")
+	 public void user_is_on_Home_Page() throws Exception {
+	 	/*System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir").replace("automacao",  "") + "/webdrivers/linux/chromedriver");
+	 	driver = new ChromeDriver();
+	 	driver.manage().window().maximize();
+	 	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	 	driver.get("http://sampleapp.tricentis.com/101/app.php");*/
+		String browserType = System.getProperty("browser");
+		Browser.openBrowser(browserType);
+		driver = Browser.getWebDriver();
+		driver.get("http://sampleapp.tricentis.com/101/app.php");
+	 	vehicleData = new VehicleDataPage(driver);
+	 //insurantData = new InsurantDataPage(driver);
+	 }
+
 	
     /*public DadosSeguro() throws Exception {        
     	vehicleData = new VehicleDataPage();
@@ -25,23 +44,22 @@ public class DadosSeguro {
 	@Before
 	public void before() throws Exception {
 		String browserType = System.getProperty("browser");
-		Browser.openBrowser(browserType);
+		//Browser.openBrowser(browserType);
 	}
 	
 	@After
 	public void after() throws Exception {
-		Browser.getWebDriver().close();
-		Browser.getWebDriver().quit();
+		//Browser.getWebDriver().close();
+		//Browser.getWebDriver().quit();
 	}
 
 	@Given("que acesso a tela inicial")
-	public void abrirPaginaDeLogin() {
+	public void abrirPaginaInicial() {
 		Browser.getWebDriver().get("http://sampleapp.tricentis.com/101/app.php");
 	}
 	
 	@And("^seleciono combo \"([^\"]*)\" com \"([^\"]*)\"$")
-	public void selecionoMake(String combo, String conteudo) {
-		vehicleData = new VehicleDataPage();
+	public void selecionoCombo(String combo, String conteudo) {
 		vehicleData.selecaoCombo(combo, conteudo);
 
 	}
@@ -52,31 +70,31 @@ public class DadosSeguro {
 	}
 
 
-	@And("preenchi o campo \"([^\"]*)\" com \"([^\"]*)\"$")
+	@And("preencho o campo \"([^\"]*)\" com \"([^\"]*)\"$")
 	public void preencherCampo(String campo, String conteudo) {
-		//VehicleDataPage vehicleData = new VehicleDataPage();
 		vehicleData.preencheTexto(campo, conteudo);
 
 	}
 
 	@And("seleciono data com \"([^\"]*)\"$")
 	public void preencherCampo(String data) {
-		//VehicleDataPage vehicleData = new VehicleDataPage();
 		vehicleData.selecaoData(data);
 
 	}
 	
 	@And("seleciono handDrive com \"([^\"]*)\"$")
 	public void selecionoHandDrive(String tipo) {
-		//VehicleDataPage vehicleData = new VehicleDataPage();
 		vehicleData.selecaoHandDrive(tipo);
 
 	}
 	
 	@And("clico em Next")
-	public void clicarAcessar() {
+	public void clicoNext() {
 		vehicleData.clicarNext();
 	}
-
+	
+    /*public DadosSeguro() throws Exception {        
+    	vehicleData = new VehicleDataPage();
+    }*/
 
 }
