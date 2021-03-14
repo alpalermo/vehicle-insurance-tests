@@ -1,10 +1,8 @@
 package stepDefinitions;
 
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-import pages.VehicleDataPage;
+import pages.DadosVeiculoPage;
 
 import utils.Browser;
 
@@ -12,14 +10,12 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 
 
 public class DadosVeiculo {
 	
 	 WebDriver driver;		
-	 private VehicleDataPage vehicleData;	
+	 private DadosVeiculoPage vehicleData;
 
 	 @Given("^user is on Home Page$")
 	 public void user_is_on_Home_Page() throws Exception {
@@ -32,7 +28,7 @@ public class DadosVeiculo {
 		Browser.openBrowser(browserType);
 		driver = Browser.getWebDriver();
 		driver.get("http://sampleapp.tricentis.com/101/app.php");
-	 	vehicleData = new VehicleDataPage(driver);
+	 	vehicleData = new DadosVeiculoPage(driver);
 	 //insurantData = new InsurantDataPage(driver);
 	 }
 

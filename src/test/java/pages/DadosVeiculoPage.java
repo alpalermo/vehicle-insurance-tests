@@ -12,11 +12,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import utils.Browser;
 
-public class VehicleDataPage{
+public class DadosVeiculoPage {
 	
 	WebDriver driver;
 	
-    public VehicleDataPage(WebDriver driver){
+    public DadosVeiculoPage(WebDriver driver){
     	this.driver = driver;
         PageFactory.initElements(driver,this);
     }

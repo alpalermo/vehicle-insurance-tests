@@ -12,11 +12,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import utils.Browser;
 
-public class InsurantDataPage{
+public class DadosSeguradoPage {
 	
 	WebDriver driver;
 	
-    public InsurantDataPage(WebDriver driver){
+    public DadosSeguradoPage(WebDriver driver){
     	this.driver = driver;
         PageFactory.initElements(driver,this);
     }

@@ -46,4 +46,25 @@ Feature: Preencher Seguro
     And seleciono optional products com "EuroProtection"
     And seleciono combo "courtesycar" produto com "Yes"
     When clico em Next tela produto
-    And depois de um tempo de 5 segundos
+
+  Scenario: Verificar cotacoes e escolher
+    Given user is on Forth Page
+    And verifico presenca do texto "Price Per Year ($)"
+    And verifico presenca do texto "Online Claim"
+    And verifico presenca do texto "Claims Discount (%)"
+    And verifico presenca do texto "Worldwide Cover"
+    And verifico presenca do texto "View Quote"
+    And verifico presenca do texto "Download Quote"
+    And seleciono cotacao com "Platinum"
+    When clico em Next tela preco
+
+  Scenario: Enviar email
+    Given user is on Fifth Page
+    And preencho campo "email" com "xyzw@gmail.com" para envio de email
+    And preencho campo "phone" com "987654321" para envio de email
+    And preencho campo "username" com "xyzw" para envio de email
+    And preencho campo "password" com "Wzyx!714" para envio de email
+    And preencho campo "confirmpassword" com "Wzyx!714" para envio de email
+    And preencho campo "comments" com "Teste de comentarios" para envio de email
+    When clico em Send para envio de email
+    Then verifico presenca do texto final "Sending e-mail success!"

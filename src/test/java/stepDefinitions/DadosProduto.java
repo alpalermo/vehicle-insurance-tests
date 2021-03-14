@@ -5,19 +5,18 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import org.openqa.selenium.WebDriver;
-import pages.InsurantDataPage;
-import pages.ProductDataPage;
+import pages.DadosProdutoPage;
 import utils.Browser;
 
 
 public class DadosProduto {
 	
 	 WebDriver driver;		
-	 private ProductDataPage productData;
+	 private DadosProdutoPage productData;
 	 
 	 @Given("^user is on Third Page$")
 	 public void user_is_on_Home_Page(){
-		 productData = new ProductDataPage(Browser.getWebDriver());
+		 productData = new DadosProdutoPage(Browser.getWebDriver());
 	 }
 
 	@Before
