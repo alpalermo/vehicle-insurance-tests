@@ -1,5 +1,6 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,6 +21,9 @@ public class DadosSeguradoPage {
     	this.driver = driver;
         PageFactory.initElements(driver,this);
     }
+    
+	@FindBy(xpath = "//*[@id=\"enterinsurantdata\"]")
+	private WebElement enterinsurantdata;
 	
 	@FindBy(xpath = "//*[@id=\"firstname\"]")
 	private WebElement firstname;
@@ -168,6 +172,16 @@ public class DadosSeguradoPage {
 					break;
 				default: ;
 			}
+
+		} catch (Exception e) {
+			//throw new Exception(e);
+		}
+	}
+	
+	public void verificoTexto(String texto) {
+		try {
+				this.waitElementIsDone(driver, this.enterinsurantdata);
+				Assert.assertTrue(enterinsurantdata.getText().contains(texto));
 
 		} catch (Exception e) {
 			//throw new Exception(e);

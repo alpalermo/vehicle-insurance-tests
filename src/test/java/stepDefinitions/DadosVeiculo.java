@@ -17,19 +17,13 @@ public class DadosVeiculo {
 	 WebDriver driver;		
 	 private DadosVeiculoPage vehicleData;
 
-	 @Given("^user is on Home Page$")
-	 public void user_is_on_Home_Page() throws Exception {
-	 	/*System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir").replace("automacao",  "") + "/webdrivers/linux/chromedriver");
-	 	driver = new ChromeDriver();
-	 	driver.manage().window().maximize();
-	 	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	 	driver.get("http://sampleapp.tricentis.com/101/app.php");*/
+	 @Given("^usuario esta na pagina inicial$")
+	 public void usuarioEstaNaPrimeiraPagina() throws Exception {
 		String browserType = System.getProperty("browser");
 		Browser.openBrowser(browserType);
 		driver = Browser.getWebDriver();
 		driver.get("http://sampleapp.tricentis.com/101/app.php");
 	 	vehicleData = new DadosVeiculoPage(driver);
-	 //insurantData = new InsurantDataPage(driver);
 	 }
 
 	
@@ -43,11 +37,10 @@ public class DadosVeiculo {
 		//Browser.openBrowser(browserType);
 	}
 	
-	@After
-	public void after() throws Exception {
-		//Browser.getWebDriver().close();
-		//Browser.getWebDriver().quit();
-	}
+	/*
+	 * @After public void after() throws Exception { Browser.getWebDriver().close();
+	 * Browser.getWebDriver().quit(); }
+	 */
 
 	@Given("que acesso a tela inicial")
 	public void abrirPaginaInicial() {
@@ -88,9 +81,5 @@ public class DadosVeiculo {
 	public void clicoNext() {
 		vehicleData.clicarNext();
 	}
-	
-    /*public DadosSeguro() throws Exception {        
-    	vehicleData = new VehicleDataPage();
-    }*/
 
 }

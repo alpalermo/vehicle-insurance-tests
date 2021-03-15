@@ -4,6 +4,8 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+
 import org.openqa.selenium.WebDriver;
 import pages.EnviaEmailPage;
 import utils.Browser;
@@ -14,17 +16,16 @@ public class EnviarEmail {
 	 WebDriver driver;		
 	 private EnviaEmailPage envioEmail;
 	 
-	 @Given("^user is on Fifth Page$")
-	 public void user_is_on_Home_Page(){
+	 @Given("^usuario esta na quinta pagina$")
+	 public void usuarioEstaNaQuintaPagina(){
 		 envioEmail = new EnviaEmailPage(Browser.getWebDriver());
 	 }
+	 
+	 @Then("^verifico que estou no tab 5$")
+	 public void verificoTab(){
+		 envioEmail.verificoTexto("Send Quote");
+	 }	
 
-	@Before
-	public void before() throws Exception {
-		String browserType = System.getProperty("browser");
-		//Browser.openBrowser(browserType);
-	}
-	
 	@After
 	public void after() throws Exception {
 		//Browser.getWebDriver().close();

@@ -17,6 +17,9 @@ public class DadosPrecoPage {
     	this.driver = driver;
         PageFactory.initElements(driver,this);
     }
+    
+	@FindBy(xpath = "//*[@id=\"selectpriceoption\"]")
+	private WebElement selectpriceoption;
 	
 	@FindBy(xpath = "//*[@id=\"priceTable\"]/tfoot/tr/th[2]/label[1]/span")
 	private WebElement radioOption1;
@@ -110,6 +113,11 @@ public class DadosPrecoPage {
 					this.waitElementIsDone(driver, this.downloadQuote);
 					Assert.assertEquals(texto, downloadQuote.getText());
 					break;
+				case "Select Price Option":
+					this.waitElementIsDone(driver, this.selectpriceoption);
+					Assert.assertTrue(selectpriceoption.getText().contains(texto));
+					break;
+					
 				default: ;
 			}
 

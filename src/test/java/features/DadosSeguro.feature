@@ -1,6 +1,6 @@
 Feature: Preencher Seguro
   Scenario: Preencher dados do veiculo 
-    Given user is on Home Page
+    Given usuario esta na pagina inicial
     And seleciono combo "make" com "Audi"
     And seleciono combo "model" com "Scooter"
     And preencho o campo "cylindercapacity" com "1000"
@@ -17,11 +17,10 @@ Feature: Preencher Seguro
     And seleciono combo "fuel" com "Petrol"
     And depois de um tempo de 1 segundos
 	When clico em Next
-	#And depois de um tempo de 5 segundos
-	#Then sou redirecionado para "Tela2"
 	
   Scenario: Preencher dados do segurado
-    Given user is on Second Page
+    Given usuario esta na segunda pagina
+    Then verifico que estou no tab 2
     And preencho o campo "firstname" segurado com "Alex"
     And preencho o campo "lastname" segurado com "Andre"
     And seleciono data segurado com "09/25/1975"
@@ -34,11 +33,10 @@ Feature: Preencher Seguro
     And seleciono hobby segurado com "Speeding"
     And preencho o campo "website" segurado com "www.teste.com"
 	When clico em Next tela segurado
-	#And depois de um tempo de 5 segundos
-	#Then sou redirecionado para "Tela2"
 
   Scenario: Preencher dados do produto
-    Given user is on Third Page
+    Given usuario esta na terceira pagina
+    Then verifico que estou no tab 3
     And seleciono data produto com "09/25/2021"
     And seleciono combo "insurancesum" produto com "3.000.000,00"
     And seleciono combo "meritrating" produto com "Super Bonus"
@@ -48,7 +46,8 @@ Feature: Preencher Seguro
     When clico em Next tela produto
 
   Scenario: Verificar cotacoes e escolher
-    Given user is on Forth Page
+    Given usuario esta na quarta pagina
+    Then verifico que estou no tab 4
     And verifico presenca do texto "Price Per Year ($)"
     And verifico presenca do texto "Online Claim"
     And verifico presenca do texto "Claims Discount (%)"
@@ -59,7 +58,8 @@ Feature: Preencher Seguro
     When clico em Next tela preco
 
   Scenario: Enviar email
-    Given user is on Fifth Page
+    Given usuario esta na quinta pagina
+    Then verifico que estou no tab 5
     And preencho campo "email" com "xyzw@gmail.com" para envio de email
     And preencho campo "phone" com "987654321" para envio de email
     And preencho campo "username" com "xyzw" para envio de email

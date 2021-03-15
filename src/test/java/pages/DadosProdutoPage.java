@@ -1,5 +1,6 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,6 +18,9 @@ public class DadosProdutoPage {
     	this.driver = driver;
         PageFactory.initElements(driver,this);
     }
+    
+	@FindBy(xpath = "//*[@id=\"enterproductdata\"]")
+	private WebElement enterproductdata;
 	
 	@FindBy(xpath = "//*[@id=\"startdate\"]")
 	private WebElement startdate;
@@ -104,6 +108,15 @@ public class DadosProdutoPage {
 		startdate.sendKeys(data);
 	}
 	
+	public void verificoTexto(String texto) {
+		try {
+				this.waitElementIsDone(driver, this.enterproductdata);
+				Assert.assertTrue(enterproductdata.getText().contains(texto));
+
+		} catch (Exception e) {
+			//throw new Exception(e);
+		}
+	}
 
 	public void clicarNext() {
 		

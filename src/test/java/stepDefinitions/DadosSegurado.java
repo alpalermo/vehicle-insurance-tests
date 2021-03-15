@@ -4,6 +4,9 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import pages.DadosSeguradoPage;
 import utils.Browser;
@@ -14,23 +17,16 @@ public class DadosSegurado {
 	 WebDriver driver;		
 	 private DadosSeguradoPage insurantData;
 	 
-	 @Given("^user is on Second Page$")
-	 public void user_is_on_Home_Page(){	 
-	 insurantData = new DadosSeguradoPage(Browser.getWebDriver());
+	 @Given("^usuario esta na segunda pagina$")
+	 public void usuarioEstaNaSegundaPagina(){	 
+		 insurantData = new DadosSeguradoPage(Browser.getWebDriver());
 	 }
+	 
+	 @Then("^verifico que estou no tab 2$")
+	 public void verificoTab(){
+		  insurantData.verificoTexto("Enter Insurant Data");
+	 }		 
 
-	@Before
-	public void before() throws Exception {
-		String browserType = System.getProperty("browser");
-		//Browser.openBrowser(browserType);
-	}
-	
-	@After
-	public void after() throws Exception {
-		//Browser.getWebDriver().close();
-		//Browser.getWebDriver().quit();
-	}
-	
 	@And("preencho o campo \"([^\"]*)\" segurado com \"([^\"]*)\"$")
 	public void preencherCampoSegurado(String campo, String conteudo) {
 		insurantData.preencheTexto(campo, conteudo);

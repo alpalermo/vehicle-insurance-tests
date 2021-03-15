@@ -16,6 +16,9 @@ public class EnviaEmailPage {
     	this.driver = driver;
         PageFactory.initElements(driver,this);
     }
+    
+	@FindBy(xpath = "//*[@id=\"sendquote\"]")
+	private WebElement sendquote;
 	
 	@FindBy(xpath = "//*[@id=\"email\"]")
 	private WebElement inputEmail;
@@ -89,6 +92,10 @@ public class EnviaEmailPage {
 				case "Sending e-mail success!":
 					this.waitElementIsDone(driver, this.txtSendingEmailSuccess);
 					Assert.assertEquals(texto, txtSendingEmailSuccess.getText());
+					break;
+				case "Select Quote":
+					this.waitElementIsDone(driver, this.sendquote);
+					Assert.assertTrue(sendquote.getText().contains(texto));
 					break;
 				default: ;
 			}
